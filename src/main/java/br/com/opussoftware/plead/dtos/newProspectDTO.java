@@ -1,6 +1,7 @@
 package br.com.opussoftware.plead.dtos;
 
 import br.com.opussoftware.plead.validators.NullableNotBlank;
+import br.com.opussoftware.plead.validators.ProspectType;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -12,8 +13,7 @@ import java.math.BigDecimal;
 
 public class newProspectDTO {
 
-    @NotEmpty
-    @Size(min = 2, max = 2, message = "O tipo de prospect deve ser PF ou PJ")
+    @ProspectType
     private String tipo;
 
     private Boolean expostaPoliticamente;
