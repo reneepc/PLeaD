@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-@JsonTypeName("Pessoa Jurídica")
+@JsonTypeName("PJ")
 public class ProspectPJ extends Prospect {
     @NotEmpty(message = "Uma pessoa jurídica deve conter um CNPJ")
     @CNPJ(message = "CNPJ inválido")

@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-@JsonTypeName("Pessoa Física")
+@JsonTypeName("PF")
 public class ProspectPF extends Prospect {
     @NotEmpty(message = "Sobrenome é necessário para pessoa física")
     private String sobrenome;

@@ -1,5 +1,7 @@
 package br.com.opussoftware.plead.domain;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.sun.istack.Nullable;
 
 import javax.persistence.Entity;
@@ -21,6 +23,15 @@ import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "tipo"
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = ProspectPF.class, name = "PF"),
+        @JsonSubTypes.Type(value = ProspectPJ.class, name = "PJ")
+})
 public abstract class Prospect {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
