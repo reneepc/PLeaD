@@ -1,11 +1,10 @@
 package br.com.opussoftware.plead.controller;
 
 import br.com.opussoftware.plead.domain.Prospect;
-import br.com.opussoftware.plead.newProspectDTO;
+import br.com.opussoftware.plead.dtos.newProspectDTO;
 import br.com.opussoftware.plead.services.ProspectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
