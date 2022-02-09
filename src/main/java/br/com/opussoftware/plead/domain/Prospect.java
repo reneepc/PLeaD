@@ -1,7 +1,8 @@
 package br.com.opussoftware.plead.domain;
 
+import com.sun.istack.Nullable;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,9 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,15 +32,23 @@ public abstract class Prospect {
     private String nomeRazaoSocial;
 
     @PositiveOrZero(message = "O valor da renda anual não pode ser negativo")
+    @Nullable
     private BigDecimal rendaAnual;
 
+    @Nullable
     private Boolean expostaPoliticamente;
 
     @ManyToMany
-    @JoinTable(name = "prospect_processos",
+    @JoinTable(name = "processos_envolvendo_prospect",
             joinColumns = @JoinColumn(name = "prospect_id"),
             inverseJoinColumns = @JoinColumn(name = "processo_id"))
-    private List<Processo> processos = new java.util.ArrayList<>();
+    private List<Processo> processos = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "midia_negativa_envolvendo_prospect",
+                joinColumns = @JoinColumn(name = "prospect_id"),
+                inverseJoinColumns = @JoinColumn(name = "midia_id"))
+    private List<MidiaNegativa> midiasNegativas = new ArrayList<>();
 
     public void setProcessos(List<Processo> processos) {
         this.processos = processos;

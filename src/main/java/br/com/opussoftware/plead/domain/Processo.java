@@ -1,6 +1,7 @@
 package br.com.opussoftware.plead.domain;
 
 import br.com.opussoftware.plead.domain.enums.TipoProcesso;
+import org.hibernate.engine.internal.ImmutableEntityEntry;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,7 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -30,10 +33,10 @@ public class Processo {
 
     private TipoProcesso tipo;
 
-    @NotEmpty
+    @NotEmpty(message = "Todo processo deve ter um número CNJ válido")
     private String numeroCNJ;
 
-    @Size(min = 10, max = 2000, message = "Mínimo de caracteres para a descrição de 10, máximo de 2000")
+    @Min(value = 10, message = "A descrição deve conter no mínimo 10 caracteres")
     private String descricao;
 
     @NotEmpty(message = "É necessária uma fonte para o processo")
