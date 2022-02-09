@@ -1,9 +1,11 @@
 package br.com.opussoftware.plead.controller;
 
 import br.com.opussoftware.plead.domain.Prospect;
+import br.com.opussoftware.plead.newProspectDTO;
 import br.com.opussoftware.plead.services.ProspectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -34,7 +37,7 @@ public class ProspectController {
     }
 
     @PostMapping
-    public ResponseEntity<Prospect> newProspect(@RequestBody Prospect prospect) {
+    public ResponseEntity<newProspectDTO> newProspect(@Valid @RequestBody newProspectDTO prospect) {
         return new ResponseEntity(prospect, HttpStatus.CREATED);
     }
 }
