@@ -5,13 +5,11 @@ import br.com.opussoftware.plead.validators.ProspectType;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
-public class newProspectDTO {
+public class NewProspectDTO {
 
     @ProspectType
     private String tipo;
@@ -50,9 +48,9 @@ public class newProspectDTO {
     @Size(min = 2, max = 150, message = "A nome fantasia deve ter entre 2 e 100 caracteres")
     private String nomeFantasia;
 
-    public newProspectDTO() {}
+    public NewProspectDTO() {}
 
-    public newProspectDTO(String tipo, Boolean expostaPoliticamente, BigDecimal rendaAnual, String cpf, String nome,
+    public NewProspectDTO(String tipo, Boolean expostaPoliticamente, BigDecimal rendaAnual, String cpf, String nome,
                           String sobrenome, String nomePublico, String cnpj, String razaoSocial, String nomeFantasia) {
         this.tipo = tipo;
         this.expostaPoliticamente = expostaPoliticamente;

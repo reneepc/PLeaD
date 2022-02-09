@@ -1,7 +1,7 @@
 package br.com.opussoftware.plead.controller;
 
 import br.com.opussoftware.plead.domain.Prospect;
-import br.com.opussoftware.plead.dtos.newProspectDTO;
+import br.com.opussoftware.plead.dtos.NewProspectDTO;
 import br.com.opussoftware.plead.services.ProspectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +36,8 @@ public class ProspectController {
     }
 
     @PostMapping
-    public ResponseEntity<newProspectDTO> newProspect(@Valid @RequestBody newProspectDTO prospect) {
+    public ResponseEntity<?> newProspect(@Valid @RequestBody NewProspectDTO newProspectDTO) {
+        Prospect prospect = service.save(newProspectDTO);
         return new ResponseEntity(prospect, HttpStatus.CREATED);
     }
 }
