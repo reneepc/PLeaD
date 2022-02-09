@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
@@ -46,9 +45,10 @@ public abstract class Prospect {
 
     @ManyToMany
     @JoinTable(name = "midia_negativa_envolvendo_prospect",
-                joinColumns = @JoinColumn(name = "prospect_id"),
-                inverseJoinColumns = @JoinColumn(name = "midia_id"))
+            joinColumns = @JoinColumn(name = "prospect_id"),
+            inverseJoinColumns = @JoinColumn(name = "midia_id"))
     private List<MidiaNegativa> midiasNegativas = new ArrayList<>();
+
 
     public void setProcessos(List<Processo> processos) {
         this.processos = processos;
@@ -104,6 +104,13 @@ public abstract class Prospect {
         this.expostaPoliticamente = expostaPoliticamente;
     }
 
+    public List<MidiaNegativa> getMidiasNegativas() {
+        return midiasNegativas;
+    }
+
+    public void setMidiasNegativas(List<MidiaNegativa> midiasNegativas) {
+        this.midiasNegativas = midiasNegativas;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
