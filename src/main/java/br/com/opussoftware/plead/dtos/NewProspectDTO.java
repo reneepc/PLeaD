@@ -45,7 +45,7 @@ public class NewProspectDTO {
     @Size(min = 2, max = 150, message = "A razão social deve ter entre 2 e 250 caracteres")
     private String razaoSocial;
 
-    @Size(min = 2, max = 150, message = "A nome fantasia deve ter entre 2 e 100 caracteres")
+    @Size(min = 2, max = 150, message = "O nome fantasia deve ter entre 2 e 150 caracteres")
     private String nomeFantasia;
 
     public NewProspectDTO() {}
@@ -62,6 +62,29 @@ public class NewProspectDTO {
         this.cnpj = cnpj;
         this.razaoSocial = razaoSocial;
         this.nomeFantasia = nomeFantasia;
+    }
+
+    /* Util para teste PJ*/
+    public NewProspectDTO(String tipo, Boolean expostaPoliticamente, BigDecimal rendaAnual, String cnpj,
+                          String razaoSocial, String nomeFantasia) {
+        this.tipo = tipo;
+        this.expostaPoliticamente = expostaPoliticamente;
+        this.rendaAnual = rendaAnual;
+        this.cnpj = cnpj;
+        this.razaoSocial = razaoSocial;
+        this.nomeFantasia = nomeFantasia;
+    }
+
+    /* Util para teste PJ*/
+    public NewProspectDTO(String tipo, Boolean expostaPoliticamente, BigDecimal rendaAnual, String cpf, String nome,
+                          String sobrenome, String nomePublico) {
+        this.tipo = tipo;
+        this.expostaPoliticamente = expostaPoliticamente;
+        this.rendaAnual = rendaAnual;
+        this.cpf = cpf;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.nomePublico = nomePublico;
     }
 
     public String getTipo() {

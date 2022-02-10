@@ -13,6 +13,6 @@ public class ProspectTypeValidator implements ConstraintValidator<ProspectType, 
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        return s.length() > 2 || s.equals("PF") || s.equals("PJ");
+        return s.equals("PF") || s.equals("PJ");
     }
 }

@@ -78,11 +78,6 @@ public abstract class Prospect {
         this.expostaPoliticamente = expostaPoliticamente;
     }
 
-    public Prospect(Long id, String nomeRazaoSocial) {
-        this.id = id;
-        this.nomeRazaoSocial = nomeRazaoSocial;
-    }
-
     public Long getId() {
         return id;
     }

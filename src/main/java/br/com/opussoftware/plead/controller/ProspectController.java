@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -38,6 +39,7 @@ public class ProspectController {
     @PostMapping
     public ResponseEntity<?> newProspect(@Valid @RequestBody NewProspectDTO newProspectDTO) {
         Prospect prospect = service.save(newProspectDTO);
-        return new ResponseEntity(prospect, HttpStatus.CREATED);
+        var location = URI.create("/prospects/" + prospect.getId());
+        return ResponseEntity.created(location).build();
     }
 }

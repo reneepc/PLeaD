@@ -30,7 +30,9 @@ public class MockDB {
                 "Carvalho Almeida", "450.783.720-08", "DJ do Gado");
         Prospect p5 = new ProspectPJ(null, "Cocócoral Cocoricó SA", BigDecimal.valueOf(1000000), true,
                 "84.242.492/0001-11", "Cocócoral");
+        Prospect p6 = new ProspectPF(null,  "Dona", BigDecimal.valueOf(10000000000000.00), true,
+                "Rose", "577.537.470-37", "Matriarca");
 
-        prospectRepository.saveAll(List.of(p1,p2,p3,p4,p5));
+        prospectRepository.saveAll(List.of(p1,p2,p3,p4,p5,p6));
     }
 }
