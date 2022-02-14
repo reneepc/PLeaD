@@ -1,6 +1,7 @@
 package br.com.opussoftware.plead.domain;
 
 import br.com.opussoftware.plead.domain.enums.TipoProcesso;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.Entity;
@@ -8,9 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,13 +30,14 @@ public class Processo {
     @NotEmpty(message = "Todo processo deve ter um número CNJ válido")
     private String numeroCNJ;
 
-    @Min(value = 10, message = "A descrição deve conter no mínimo 10 caracteres")
+    @Size(min = 10, message = "A descrição deve conter no mínimo 10 caracteres")
     private String descricao;
 
     @NotEmpty(message = "É necessária uma fonte para o processo")
     @URL
     private String url;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "processos")
     private Set<Prospect> prospects = new HashSet<>();
 
@@ -95,5 +97,13 @@ public class Processo {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Set<Prospect> getProspects() {
+        return prospects;
+    }
+
+    public void setProspects(Set<Prospect> prospects) {
+        this.prospects = prospects;
     }
 }

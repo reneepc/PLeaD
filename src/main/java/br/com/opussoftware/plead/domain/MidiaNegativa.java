@@ -1,16 +1,17 @@
 package br.com.opussoftware.plead.domain;
 
 import br.com.opussoftware.plead.domain.enums.TipoSuspeita;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import java.util.ArrayList;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -23,7 +24,7 @@ public class MidiaNegativa {
     private Long id;
 
     @NotEmpty
-    @Min(value = 5, message = "A notícia deve ter no mínimo 5 caracteres")
+    @Size(min = 5, message = "A notícia deve ter no mínimo 5 caracteres")
     private String titulo;
 
     @NotEmpty(message = "A notícia precisa de um URL fonte.")
@@ -32,10 +33,22 @@ public class MidiaNegativa {
     @Past(message = "A data de publicação da notícia deve ser anterior à atual")
     private Date dataPublicacao;
 
+    @NotNull
     private TipoSuspeita suspeita;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "midiasNegativas")
     private Set<Prospect> prospects = new HashSet<>();
+
+    public MidiaNegativa() {}
+
+    public MidiaNegativa(Long id, String titulo, String url, Date dataPublicacao, TipoSuspeita suspeita) {
+        this.id = id;
+        this.titulo = titulo;
+        Url = url;
+        this.dataPublicacao = dataPublicacao;
+        this.suspeita = suspeita;
+    }
 
     public Long getId() {
         return id;
@@ -88,5 +101,13 @@ public class MidiaNegativa {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public Set<Prospect> getProspects() {
+        return prospects;
+    }
+
+    public void setProspects(Set<Prospect> prospects) {
+        this.prospects = prospects;
     }
 }
