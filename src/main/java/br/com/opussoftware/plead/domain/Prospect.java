@@ -1,10 +1,12 @@
 package br.com.opussoftware.plead.domain;
 
+import br.com.opussoftware.plead.domain.enums.StatusProspect;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.sun.istack.Nullable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,13 +15,15 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -48,26 +52,23 @@ public abstract class Prospect {
     @Nullable
     private Boolean expostaPoliticamente;
 
+    @NotNull
+    private StatusProspect status;
+
     @ManyToMany
     @JoinTable(name = "processos_envolvendo_prospect",
             joinColumns = @JoinColumn(name = "prospect_id"),
             inverseJoinColumns = @JoinColumn(name = "processo_id"))
-    private List<Processo> processos = new ArrayList<>();
+    private Set<Processo> processos = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "midia_negativa_envolvendo_prospect",
             joinColumns = @JoinColumn(name = "prospect_id"),
             inverseJoinColumns = @JoinColumn(name = "midia_id"))
-    private List<MidiaNegativa> midiasNegativas = new ArrayList<>();
+    private Set<MidiaNegativa> midiasNegativas = new HashSet<>();
 
-
-    public void setProcessos(List<Processo> processos) {
-        this.processos = processos;
-    }
-
-    public List<Processo> getProcessos() {
-        return processos;
-    }
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "prospect")
+    Set<JustificativaDeRecusa> justificativas = new java.util.LinkedHashSet<>();
 
     public Prospect() {}
 
@@ -76,6 +77,7 @@ public abstract class Prospect {
         this.nomeRazaoSocial = nomeRazaoSocial;
         this.rendaAnual = rendaAnual;
         this.expostaPoliticamente = expostaPoliticamente;
+        this.status = StatusProspect.AGUARDANDO_PROCESSAMENTO;
     }
 
     public Long getId() {
@@ -110,11 +112,11 @@ public abstract class Prospect {
         this.expostaPoliticamente = expostaPoliticamente;
     }
 
-    public List<MidiaNegativa> getMidiasNegativas() {
+    public Set<MidiaNegativa> getMidiasNegativas() {
         return midiasNegativas;
     }
 
-    public void setMidiasNegativas(List<MidiaNegativa> midiasNegativas) {
+    public void setMidiasNegativas(Set<MidiaNegativa> midiasNegativas) {
         this.midiasNegativas = midiasNegativas;
     }
     @Override
@@ -128,5 +130,30 @@ public abstract class Prospect {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public StatusProspect getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusProspect status) {
+        this.status = status;
+    }
+
+
+    public void setProcessos(Set<Processo> processos) {
+        this.processos = processos;
+    }
+
+    public Set<Processo> getProcessos() {
+        return processos;
+    }
+
+    public void setJustificativas(Set<JustificativaDeRecusa> justificativas) {
+        this.justificativas = justificativas;
+    }
+
+    public Set<JustificativaDeRecusa> getJustificativas() {
+        return justificativas;
     }
 }

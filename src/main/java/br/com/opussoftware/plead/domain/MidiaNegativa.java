@@ -9,12 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class MidiaNegativa {
@@ -35,7 +35,7 @@ public class MidiaNegativa {
     private TipoSuspeita suspeita;
 
     @ManyToMany(mappedBy = "midiasNegativas")
-    private List<Prospect> prospects = new ArrayList<>();
+    private Set<Prospect> prospects = new HashSet<>();
 
     public Long getId() {
         return id;

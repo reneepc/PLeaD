@@ -40,14 +40,14 @@ public class ProspectService {
     }
 
     private boolean validPF(NewProspectDTO prospectDto) {
-        if(prospectDto.getCpf() == null) {
-            return false;
-        }
-        return prospectDto.getSobrenome() != null;
+        return prospectDto.getSobrenome() != null &&
+                prospectDto.getNome() != null &&
+                prospectDto.getCpf() != null;
     }
 
     private boolean validPJ(NewProspectDTO newProspectDTO) {
-        return newProspectDTO.getCnpj() != null;
+        return newProspectDTO.getCnpj() != null &&
+                newProspectDTO.getRazaoSocial() != null;
     }
 
     private ProspectPJ newProspectDTOToProspectPJ(NewProspectDTO newProspectDTO) {

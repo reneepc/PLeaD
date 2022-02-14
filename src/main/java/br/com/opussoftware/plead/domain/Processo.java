@@ -1,26 +1,19 @@
 package br.com.opussoftware.plead.domain;
 
 import br.com.opussoftware.plead.domain.enums.TipoProcesso;
-import org.hibernate.engine.internal.ImmutableEntityEntry;
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Processo {
@@ -44,7 +37,7 @@ public class Processo {
     private String url;
 
     @ManyToMany(mappedBy = "processos")
-    private List<Prospect> prospects = new ArrayList<>();
+    private Set<Prospect> prospects = new HashSet<>();
 
     public Processo() {}
 
