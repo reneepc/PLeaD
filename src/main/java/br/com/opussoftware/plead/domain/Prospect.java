@@ -42,7 +42,7 @@ public abstract class Prospect {
     private Long id;
 
     @NotEmpty(message = "É necessário especificar um nome ou razão social")
-    @Size(min=2, max = 100, message = "O nome deve ter entra 2 e 100 caracteres")
+    @Size(min=2, max = 100, message = "O nome deve ter entre 2 e 100 caracteres")
     private String nomeRazaoSocial;
 
     @PositiveOrZero(message = "O valor da renda anual não pode ser negativo")
