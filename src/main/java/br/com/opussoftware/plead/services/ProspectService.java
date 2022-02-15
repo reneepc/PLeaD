@@ -4,8 +4,6 @@ import br.com.opussoftware.plead.domain.Prospect;
 import br.com.opussoftware.plead.domain.ProspectPF;
 import br.com.opussoftware.plead.domain.ProspectPJ;
 import br.com.opussoftware.plead.dtos.NewProspectDTO;
-import br.com.opussoftware.plead.dtos.ProspectPFDTO;
-import br.com.opussoftware.plead.dtos.ProspectPJDTO;
 import br.com.opussoftware.plead.exceptions.ObjectNotFoundException;
 import br.com.opussoftware.plead.repositories.ProspectRepository;
 import org.modelmapper.ModelMapper;
@@ -71,30 +69,4 @@ public class ProspectService {
         throw new IllegalArgumentException("O CPF e Sobrenome são obrigatórios para PF");
     }
 
-    private ProspectPFDTO ProspectPFToProspectPFDTO(ProspectPF prospectPF) {
-        modelMapper.typeMap(ProspectPF.class, ProspectPFDTO.class)
-                .addMapping((src) -> src.getNomeRazaoSocial() + src.getSobrenome(), ProspectPFDTO::setNome)
-                .addMapping((src) -> src.getRendaAnual().divide(BigDecimal.valueOf(12)),
-                        ProspectPFDTO::setRendaMensal)
-                .addMapping((src) -> src.getProcessos().isEmpty() ? null : src.getProcessos(),
-                        ProspectPFDTO::setProcessos)
-                .addMapping((src) -> src.getMidiasNegativas().isEmpty() ? null : src.getMidiasNegativas(),
-                        ProspectPFDTO::setMidiasNegativas)
-                .addMapping((src) -> src.getJustificativas().isEmpty() ? null : src.getJustificativas(),
-                        ProspectPFDTO::setJustificativas);
-
-        return modelMapper.map(prospectPF, ProspectPFDTO.class);
-    }
-
-    private ProspectPJDTO ProspectPJToProspectPJDTO(ProspectPJ prospectPJ) {
-        modelMapper.typeMap(ProspectPJ.class, ProspectPJDTO.class)
-                .addMapping(ProspectPJ::getNomeRazaoSocial, ProspectPJDTO::setRazaoSocial)
-                .addMapping((src) -> src.getProcessos().isEmpty() ? null : src.getProcessos(),
-                        ProspectPJDTO::setProcessos)
-                .addMapping((src) -> src.getMidiasNegativas().isEmpty() ? null : src.getMidiasNegativas(),
-                        ProspectPJDTO::setMidiasNegativas)
-                .addMapping((src) -> src.getJustificativas().isEmpty() ? null : src.getJustificativas(),
-                        ProspectPJDTO::setJustificativas);
-        return modelMapper.map(prospectPJ, ProspectPJDTO.class);
-    }
 }
