@@ -1,12 +1,11 @@
-package br.com.opussoftware.plead.dtos.analysis;
+package br.com.opussoftware.plead.dtos.inspecao;
 
-import br.com.opussoftware.plead.validators.ProspectType;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-public class AnaliseProspectPJDTO {
+public class InspecaoProspectPJDTO {
     @NotEmpty(message = "É necessário um id para que o prospect possa ser identificado unicamente")
     private Long id;
 
@@ -21,7 +20,7 @@ public class AnaliseProspectPJDTO {
     @NotEmpty(message = "Uma pessoa jurídica deve conter um nome fantasia")
     private String nomeFantasia;
 
-    public AnaliseProspectPJDTO(Long id, String razaoSocial, String cnpj, String nomeFantasia) {
+    public InspecaoProspectPJDTO(Long id, String razaoSocial, String cnpj, String nomeFantasia) {
         this.id = id;
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;

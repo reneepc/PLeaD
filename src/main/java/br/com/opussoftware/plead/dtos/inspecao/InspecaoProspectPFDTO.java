@@ -1,13 +1,12 @@
-package br.com.opussoftware.plead.dtos.analysis;
+package br.com.opussoftware.plead.dtos.inspecao;
 
 import br.com.opussoftware.plead.validators.NullableNotBlank;
-import br.com.opussoftware.plead.validators.ProspectType;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-public class AnaliseProspectPFDTO {
+public class InspecaoProspectPFDTO {
     @NotEmpty(message = "É necessário um id para que o prospect possa ser identificado unicamente.")
     private Long id;
 
@@ -22,7 +21,7 @@ public class AnaliseProspectPFDTO {
     @NullableNotBlank
     private String nomePublico;
 
-    public AnaliseProspectPFDTO(Long id, String nome, String cpf, String nomePublico) {
+    public InspecaoProspectPFDTO(Long id, String nome, String cpf, String nomePublico) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
