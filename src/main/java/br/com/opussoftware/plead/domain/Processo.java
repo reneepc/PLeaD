@@ -22,7 +22,7 @@ public class Processo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Past(message = "A data informada deve ser no passado")
+    @Past(message = "A data informada deve ser anterior à atual")
     private Date dataDeAbertura;
 
     private TipoProcesso tipo;

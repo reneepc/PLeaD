@@ -5,6 +5,7 @@ import br.com.opussoftware.plead.domain.Processo;
 import br.com.opussoftware.plead.domain.Prospect;
 import br.com.opussoftware.plead.domain.ProspectPF;
 import br.com.opussoftware.plead.domain.ProspectPJ;
+import br.com.opussoftware.plead.domain.enums.StatusProspect;
 import br.com.opussoftware.plead.domain.enums.TipoProcesso;
 import br.com.opussoftware.plead.domain.enums.TipoSuspeita;
 import br.com.opussoftware.plead.repositories.MidiaNegativaRepository;
@@ -69,6 +70,11 @@ public class MockDB {
         p6.getMidiasNegativas().add(midia1);
 
         midia1.getProspects().addAll(List.of(p1,p3,p6));
+
+        p1.setStatus(StatusProspect.REPROVADO);
+        p2.setStatus(StatusProspect.APROVADO);
+        p3.setStatus(StatusProspect.REPROVADO);
+        p6.setStatus(StatusProspect.REPROVADO);
 
 
         processoRepository.saveAll(List.of(proc1, proc2));

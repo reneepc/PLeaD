@@ -3,6 +3,7 @@ package br.com.opussoftware.plead.services;
 import br.com.opussoftware.plead.domain.Prospect;
 import br.com.opussoftware.plead.domain.ProspectPF;
 import br.com.opussoftware.plead.domain.ProspectPJ;
+import br.com.opussoftware.plead.domain.enums.StatusProspect;
 import br.com.opussoftware.plead.dtos.NewProspectDTO;
 import br.com.opussoftware.plead.exceptions.ObjectNotFoundException;
 import br.com.opussoftware.plead.repositories.ProspectRepository;
@@ -37,6 +38,7 @@ public class ProspectService {
         } else {
             newProspect = newProspectDTOToProspectPJ(newProspectDTO);
         }
+        newProspect.setStatus(StatusProspect.AGUARDANDO_PROCESSAMENTO);
         return repo.save(newProspect);
     }
 
