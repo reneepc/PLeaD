@@ -62,7 +62,7 @@ public class ProspectControllerTest {
     }
 
     @Test
-    public void rejectInvalidValuesForNewProspectType() throws Exception {
+    public void rejectInvalidValuesForProspectType() throws Exception {
         var prospectShortProspectType = new NewProspectDTO("P", true, BigDecimal.valueOf(100000000),
                 "89.208.072/0001-32", "Coca Cola Inc", "Coca Cola");
         var prospectLongProspectType = new NewProspectDTO("Contabil", true, BigDecimal.valueOf(100000000),
@@ -88,7 +88,7 @@ public class ProspectControllerTest {
     }
 
     @Test
-    public void rejectInvalidValuesForNewProspectPF() throws Exception {
+    public void rejectInvalidValuesForProspectPF() throws Exception {
         var prospectInvalidCpf = new NewProspectDTO("PF", true, BigDecimal.valueOf(300000), "007.6547.828-72",
                 "Paulo", "Salim Maluf", "Maluf");
         var prospectInvalidSobrenome = new NewProspectDTO("PF", true, BigDecimal.valueOf(300000), "007.687.828-72",
@@ -109,7 +109,7 @@ public class ProspectControllerTest {
     }
 
     @Test
-    public void rejectInvalidValuesForNewProspectPJ() throws Exception {
+    public void rejectInvalidValuesForProspectPJ() throws Exception {
         var prospectInvalidCnpj = new NewProspectDTO("PJ", true, BigDecimal.valueOf(100000000),
                 "89.208.07/0001-32", "Coca Cola Inc", "Coca Cola");
         var prospectInvalidNomeFantasia = new NewProspectDTO("PJ", true, BigDecimal.valueOf(100000000),

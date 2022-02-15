@@ -12,11 +12,11 @@ public class AnaliseProspectPFDTO {
     private Long id;
 
     @NotEmpty(message = "É necessário especificar um nome")
-    @Size(min = 2, max = 200, message = "O Nome deve ter entre 2 e 200 caracteres")
+    @Size(min = 2, max = 100, message = "O Nome deve ter entre 2 e 100 caracteres")
     private String nome;
 
     @NotEmpty(message = "Toda pessoa física precisa de um CPF")
-    @CPF(message = "CPF inválido")
+    @CPF
     private String cpf;
 
     @NullableNotBlank

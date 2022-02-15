@@ -2,7 +2,6 @@ package br.com.opussoftware.plead.domain;
 
 import br.com.opussoftware.plead.domain.enums.TipoSuspeita;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +28,6 @@ public class MidiaNegativa {
     private String titulo;
 
     @NotEmpty(message = "A notícia precisa de um URL fonte.")
-    @URL
     private String Url;
 
     @Past(message = "A data de publicação da notícia deve ser anterior à atual")

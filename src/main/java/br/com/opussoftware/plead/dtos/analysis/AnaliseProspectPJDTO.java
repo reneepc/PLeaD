@@ -11,11 +11,11 @@ public class AnaliseProspectPJDTO {
     private Long id;
 
     @NotEmpty(message = "É necessário especificar uma razão social")
-    @Size(min = 2, max = 200, message = "A razão social deve ter entre 2 e 200 caracteres")
+    @Size(min = 2, max = 100, message = "A razão social deve ter entre 2 e 100 caracteres")
     private String razaoSocial;
 
     @NotEmpty(message = "Uma pessoa jurídica deve ter um CNPJ")
-    @CNPJ(message = "CNPJ inválido")
+    @CNPJ
     private String cnpj;
 
     @NotEmpty(message = "Uma pessoa jurídica deve conter um nome fantasia")
