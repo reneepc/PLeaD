@@ -1,4 +1,4 @@
-package br.com.opussoftware.plead.dtos;
+package br.com.opussoftware.plead.dtos.analysis;
 
 import br.com.opussoftware.plead.validators.ProspectType;
 import org.hibernate.validator.constraints.br.CNPJ;
