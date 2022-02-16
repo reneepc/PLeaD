@@ -1,4 +1,4 @@
-package br.com.opussoftware.plead.services;
+package br.com.opussoftware.plead.config;
 
 import br.com.opussoftware.plead.domain.MidiaNegativa;
 import br.com.opussoftware.plead.domain.Processo;
@@ -11,15 +11,17 @@ import br.com.opussoftware.plead.domain.enums.TipoSuspeita;
 import br.com.opussoftware.plead.repositories.MidiaNegativaRepository;
 import br.com.opussoftware.plead.repositories.ProcessoRepository;
 import br.com.opussoftware.plead.repositories.ProspectRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-@Service
-public class MockDB {
+@Component
+public class MockDB implements CommandLineRunner {
     private final ProspectRepository prospectRepository;
     private final ProcessoRepository processoRepository;
     private final MidiaNegativaRepository midiaNegativaRepository;
@@ -31,8 +33,7 @@ public class MockDB {
         this.midiaNegativaRepository = midiaNegativaRepository;
     }
 
-    @Bean
-    public void makeDatabaseInstance() {
+    private void makeDatabaseInstance() {
         Prospect p1 = new ProspectPF(null, "Joaquim", BigDecimal.valueOf(50000.00), false,
                 "Borges", "714.468.890-17", "Mc quim");
         Prospect p2 = new ProspectPJ(null, "Bar do Bigode LTDA", BigDecimal.valueOf(700000), true,
@@ -80,5 +81,10 @@ public class MockDB {
         processoRepository.saveAll(List.of(proc1, proc2));
         midiaNegativaRepository.saveAll(List.of(midia1));
         prospectRepository.saveAll(List.of(p1,p2,p3,p4,p5,p6));
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        makeDatabaseInstance();
     }
 }
