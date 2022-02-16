@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,6 +38,7 @@ public class MidiaNegativa {
     private Date dataPublicacao;
 
     @NotNull
+    @Enumerated(value = EnumType.STRING)
     private TipoSuspeita suspeita;
 
     @JsonIgnore

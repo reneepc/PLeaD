@@ -4,6 +4,8 @@ import br.com.opussoftware.plead.domain.enums.TipoJustificativa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +21,7 @@ public class JustificativaDeRecusa {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Enumerated(value = EnumType.STRING)
     private TipoJustificativa tipo;
     private String comentario;
 

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,6 +27,7 @@ public class Processo {
     @Past(message = "A data informada deve ser anterior à atual")
     private Date dataDeAbertura;
 
+    @Enumerated(value = EnumType.STRING)
     private TipoProcesso tipo;
 
     @NotEmpty(message = "Todo processo deve ter um número CNJ válido")

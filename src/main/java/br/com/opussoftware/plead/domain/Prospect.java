@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.sun.istack.Nullable;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -53,6 +55,7 @@ public abstract class Prospect {
     private Boolean expostaPoliticamente;
 
     @NotNull
+    @Enumerated(value = EnumType.STRING)
     private StatusProspect status;
 
     @ManyToMany
