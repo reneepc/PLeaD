@@ -29,12 +29,7 @@ public class ProspectService {
     }
 
     public Prospect save(NewProspectDTO newProspectDTO) {
-        Prospect newProspect;
-        if(newProspectDTO.getTipo().equals("PF")) {
-            newProspect = newProspectDTOMapper.toProspectPF(newProspectDTO);
-        } else {
-            newProspect = newProspectDTOMapper.toProspectPJ(newProspectDTO);
-        }
+        Prospect newProspect = newProspectDTOMapper.toProspect(newProspectDTO);
         newProspect.setStatus(StatusProspect.AGUARDANDO_PROCESSAMENTO);
         return repo.save(newProspect);
     }
