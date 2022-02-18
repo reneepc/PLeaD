@@ -1,29 +1,11 @@
-# README #
+# PLeaD #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+### Objetivo ###
+Criar um ambiente de consulta em diretório jurídico para validação de novos Leads (PF e PJ).
+**Eliminar o tempo de consulta gasto pelo analista através da automatização da consulta de prospects.**
 
-### What is this repository for? ###
+### Descrição do Problema ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Hoje a consulta de restrições jurídicas é realizada manualmente pelo analista de Prevenção à Lavagem de Dinheiro, que utiliza em torno de 1 hora para realizar a consulta de 1 CPF ou CNPJ.
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Visando obter Leads que não possam restrições jurídicas consideradas de risco ao estabelecimento se vê necessária uma solução para automatização do processo.
