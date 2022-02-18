@@ -18,17 +18,17 @@ public interface NewProspectDTOMapper {
 
     @BeforeMapping
     default void checkIsValidPF(NewProspectDTO newProspectDTO, @MappingTarget ProspectPF prospectPF) {
-        if(newProspectDTO.getSobrenome() != null ||
-                newProspectDTO.getNome() != null ||
-                newProspectDTO.getCpf() != null) {
+        if(newProspectDTO.getSobrenome() == null ||
+                newProspectDTO.getNome() == null ||
+                newProspectDTO.getCpf() == null) {
             throw new IllegalArgumentException("O CPF e Sobrenome são obrigatórios para PF");
         }
     }
 
     @BeforeMapping
     default void checkIsValidPJ(NewProspectDTO newProspectDTO, @MappingTarget ProspectPJ prospectPJ) {
-        if(newProspectDTO.getCnpj() != null ||
-                newProspectDTO.getRazaoSocial() != null) {
+        if(newProspectDTO.getCnpj() == null ||
+                newProspectDTO.getRazaoSocial() == null) {
             throw new IllegalArgumentException("O CNPJ é obrigatório para PJ");
         }
     }
