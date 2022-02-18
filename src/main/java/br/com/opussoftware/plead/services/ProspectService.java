@@ -5,6 +5,7 @@ import br.com.opussoftware.plead.domain.ProspectPF;
 import br.com.opussoftware.plead.domain.ProspectPJ;
 import br.com.opussoftware.plead.domain.enums.StatusProspect;
 import br.com.opussoftware.plead.dtos.NewProspectDTO;
+import br.com.opussoftware.plead.dtos.mappers.NewProspectDTOMapper;
 import br.com.opussoftware.plead.exceptions.ObjectNotFoundException;
 import br.com.opussoftware.plead.repositories.ProspectRepository;
 import org.modelmapper.ModelMapper;
@@ -16,11 +17,11 @@ import java.util.List;
 @Service
 public class ProspectService {
     private final ProspectRepository repo;
-    private final ModelMapper modelMapper;
+    private final NewProspectDTOMapper newProspectDTOMapper;
 
-    public ProspectService(ProspectRepository repo, ModelMapper modelMapper) {
+    public ProspectService(ProspectRepository repo, NewProspectDTOMapper newProspectDTOMapper) {
         this.repo = repo;
-        this.modelMapper = modelMapper;
+        this.newProspectDTOMapper = newProspectDTOMapper;
     }
 
     public Prospect findById(Long id) {
@@ -42,16 +43,7 @@ public class ProspectService {
         return repo.save(newProspect);
     }
 
-    private boolean validPF(NewProspectDTO prospectDto) {
-        return prospectDto.getSobrenome() != null &&
-                prospectDto.getNome() != null &&
-                prospectDto.getCpf() != null;
-    }
 
-    private boolean validPJ(NewProspectDTO newProspectDTO) {
-        return newProspectDTO.getCnpj() != null &&
-                newProspectDTO.getRazaoSocial() != null;
-    }
 
     private ProspectPJ newProspectDTOToProspectPJ(NewProspectDTO newProspectDTO) {
         if(validPJ(newProspectDTO)) {
