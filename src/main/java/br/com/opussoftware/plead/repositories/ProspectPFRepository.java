@@ -8,8 +8,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface ProspectPFRepository extends JpaRepository<ProspectPF, Long> {
     @Query("select p from ProspectPF p where LOWER(p.nomeRazaoSocial) like lower(concat('%', :nome, '%'))")
     Page<Prospect> findAllByNome(String nome, Pageable pageable);
+
+    Optional<Prospect> findByCpf(String cpf);
 }

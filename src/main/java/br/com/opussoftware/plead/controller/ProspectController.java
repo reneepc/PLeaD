@@ -4,6 +4,7 @@ import br.com.opussoftware.plead.domain.Prospect;
 import br.com.opussoftware.plead.dtos.NewProspectDTO;
 import br.com.opussoftware.plead.repositories.ProspectPJRepository;
 import br.com.opussoftware.plead.services.ProspectPFService;
+import br.com.opussoftware.plead.services.ProspectPJService;
 import br.com.opussoftware.plead.services.ProspectService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,9 +28,10 @@ import java.net.URI;
 public class ProspectController {
     private final ProspectService prospectService;
     private final ProspectPFService prospectPFService;
-    private final ProspectPJRepository prospectPJService;
+    private final ProspectPJService prospectPJService;
 
-    public ProspectController(ProspectService service, ProspectPFService prospectPFService, ProspectPJRepository prospectPJService) {
+    public ProspectController(ProspectService service, ProspectPFService prospectPFService,
+                              ProspectPJService prospectPJService) {
         this.prospectService = service;
         this.prospectPFService = prospectPFService;
         this.prospectPJService = prospectPJService;
@@ -41,13 +43,25 @@ public class ProspectController {
         return ResponseEntity.ok().body(prospect);
     }
 
+    @GetMapping(params = "cpf")
+    public ResponseEntity<Prospect> findByCpf(@RequestParam String cpf) {
+        Prospect prospect = prospectPFService.findByCpf(cpf);
+        return ResponseEntity.ok().body(prospect);
+    }
+
+    @GetMapping(params = "cnpj")
+    public ResponseEntity<Prospect> findByCnpj(@RequestParam String cnpj) {
+        Prospect prospect = prospectPJService.findByCnpj(cnpj);
+        return ResponseEntity.ok().body(prospect);
+    }
+
     @GetMapping(value = "/{nome}", params = "nome")
     public ResponseEntity<Page<Prospect>> findProspectPFsByNome(@PathVariable String nome,
-                                               @PageableDefault(sort = "id",
-                                                       direction = Sort.Direction.ASC,
-                                                       page = 0,
-                                                       size = 12)
-                                               Pageable page) {
+                                           @PageableDefault(sort = "id",
+                                                   direction = Sort.Direction.ASC,
+                                                   page = 0,
+                                                   size = 12)
+                                           Pageable page) {
         Page<Prospect> prospects = prospectPFService.findAllByNome(nome, page);
         return ResponseEntity.ok().body(prospects);
     }

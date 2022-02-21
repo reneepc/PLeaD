@@ -1,6 +1,8 @@
 package br.com.opussoftware.plead.services;
 
 import br.com.opussoftware.plead.domain.Prospect;
+import br.com.opussoftware.plead.domain.ProspectPJ;
+import br.com.opussoftware.plead.exceptions.ObjectNotFoundException;
 import br.com.opussoftware.plead.repositories.ProspectPJRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,5 +18,9 @@ public class ProspectPJService {
 
     public Page<Prospect> findAllByRazaoSocial(String razaoSocial, Pageable page) {
         return repo.findAllByRazaoSocial(razaoSocial, page);
+    }
+
+    public Prospect findByCnpj(String cnpj) {
+        return repo.findByCnpj(cnpj).orElseThrow(() -> new ObjectNotFoundException(cnpj, ProspectPJ.class));
     }
 }

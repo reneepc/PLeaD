@@ -5,6 +5,10 @@ public class ObjectNotFoundException extends RuntimeException {
         super("Objeto não encontrado: " + id + ", tipo: " + classe.getSimpleName());
     }
 
+    public ObjectNotFoundException(String str, Class classe) {
+        super("Objeto não encontrado: " + str + ", tipo: " + classe.getSimpleName());
+    }
+
     public ObjectNotFoundException(String message) {
         super(message);
     }
