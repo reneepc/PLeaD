@@ -26,8 +26,11 @@ public class ProspectService {
         return repo.findById(id).orElseThrow(() -> new ObjectNotFoundException(id, Prospect.class));
     }
 
-    public Page<Prospect> findByNome(String nome, Pageable page) {
-        return repo.findByNome(nome, page);
+    public Page<Prospect> findAllByNome(String nome, Pageable page) {
+        return repo.findAllByNome(nome, page);
+    }
+    public Page<Prospect> findAllByRazaoSocial(String razaoSocial, Pageable page) {
+        return repo.findAllByRazaoSocial(razaoSocial, page);
     }
 
     public Page<Prospect> findAllByRendaMinima(BigDecimal rendaAnualMinima, Pageable page) {

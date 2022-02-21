@@ -11,12 +11,15 @@ import java.math.BigDecimal;
 
 @Repository
 public interface ProspectRepository extends JpaRepository<Prospect, Long> {
-    Prospect findByNomeRazaoSocial(String nome);
-
     @Query("select p from Prospect p" +
             " join ProspectPF pf on pf.id = p.id" +
             " where LOWER(p.nomeRazaoSocial) like lower(concat('%', :nome, '%'))")
-    Page<Prospect> findByNome(String nome, Pageable pageable);
+    Page<Prospect> findAllByNome(String nome, Pageable pageable);
+
+    @Query("select p from Prospect p" +
+            " join ProspectPJ pj on pj.id = p.id" +
+            " where LOWER(p.nomeRazaoSocial) like lower(concat('%', :razaoSocial, '%'))")
+    Page<Prospect> findAllByRazaoSocial(String razaoSocial, Pageable pageable);
 
     Page<Prospect> findAllByRendaAnualIsGreaterThan(BigDecimal rendaAnualMinima, Pageable pageable);
 }
