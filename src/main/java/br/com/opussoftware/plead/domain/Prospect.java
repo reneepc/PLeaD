@@ -58,13 +58,13 @@ public abstract class Prospect {
     @Enumerated(value = EnumType.STRING)
     private StatusProspect status;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "processos_envolvendo_prospect",
             joinColumns = @JoinColumn(name = "prospect_id"),
             inverseJoinColumns = @JoinColumn(name = "processo_id"))
     private Set<Processo> processos = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "midia_negativa_envolvendo_prospect",
             joinColumns = @JoinColumn(name = "prospect_id"),
             inverseJoinColumns = @JoinColumn(name = "midia_id"))
@@ -158,5 +158,17 @@ public abstract class Prospect {
 
     public Set<JustificativaDeRecusa> getJustificativas() {
         return justificativas;
+    }
+
+    public Processo associateProcesso(Processo processo) {
+        processo.getProspects().add(this);
+        processos.add(processo);
+        return processo;
+    }
+
+    public MidiaNegativa associateMidiaNegativa(MidiaNegativa midiaNegativa) {
+        midiaNegativa.getProspects().add(this);
+        midiasNegativas.add(midiaNegativa);
+        return midiaNegativa;
     }
 }
