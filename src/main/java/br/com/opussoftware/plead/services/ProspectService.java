@@ -6,6 +6,8 @@ import br.com.opussoftware.plead.dtos.NewProspectDTO;
 import br.com.opussoftware.plead.dtos.mappers.NewProspectDTOMapper;
 import br.com.opussoftware.plead.exceptions.ObjectNotFoundException;
 import br.com.opussoftware.plead.repositories.ProspectRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +26,8 @@ public class ProspectService {
         return repo.findById(id).orElseThrow(() -> new ObjectNotFoundException(id, Prospect.class));
     }
 
-    public List<Prospect> findAll() {
-        return repo.findAll();
+    public Page<Prospect> findAll(Pageable page) {
+        return repo.findAll(page);
     }
 
     public Prospect save(NewProspectDTO newProspectDTO) {
