@@ -10,7 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 @Service
 public class ProspectService {
@@ -26,6 +26,14 @@ public class ProspectService {
         return repo.findById(id).orElseThrow(() -> new ObjectNotFoundException(id, Prospect.class));
     }
 
+    public Page<Prospect> findByNome(String nome, Pageable page) {
+        return repo.findByNome(nome, page);
+    }
+
+    public Page<Prospect> findAllByRendaMinima(BigDecimal rendaAnualMinima, Pageable page) {
+        return repo.findAllByRendaAnualIsGreaterThan(rendaAnualMinima, page);
+    }
+
     public Page<Prospect> findAll(Pageable page) {
         return repo.findAll(page);
     }
@@ -35,5 +43,4 @@ public class ProspectService {
         newProspect.setStatus(StatusProspect.AGUARDANDO_PROCESSAMENTO);
         return repo.save(newProspect);
     }
-
 }

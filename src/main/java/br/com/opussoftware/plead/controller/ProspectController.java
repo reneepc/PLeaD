@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.util.List;
 
@@ -35,15 +37,38 @@ public class ProspectController {
         return ResponseEntity.ok().body(prospect);
     }
 
+    @GetMapping(value = "/{nome}", params = "nome")
+    public ResponseEntity<Page<Prospect>> findByNome(@PathVariable String nome,
+                                               @PageableDefault(sort = "id",
+                                                       direction = Sort.Direction.ASC,
+                                                       page = 0,
+                                                       size = 12)
+                                               Pageable page) {
+        Page<Prospect> prospects = service.findByNome(nome, page);
+        return ResponseEntity.ok().body(prospects);
+    }
+
+
     @GetMapping
     public ResponseEntity<Page<Prospect>> findAll(
             @PageableDefault(sort = "id",
                             direction = Sort.Direction.ASC,
                             page = 0,
-                            size = 10)
+                            size = 12)
                 Pageable page) {
 
         return ResponseEntity.ok().body(service.findAll(page));
+    }
+
+    @GetMapping(params = "min")
+    public ResponseEntity<Page<Prospect>> findAllByRendaAnualMinima(
+            @RequestParam(name = "min", defaultValue = "0") BigDecimal rendaAnualMinima,
+            @PageableDefault(sort = "id",
+            direction = Sort.Direction.ASC,
+            page = 0,
+            size = 12)
+            Pageable page) {
+        return ResponseEntity.ok().body(service.findAllByRendaMinima(rendaAnualMinima, page));
     }
 
     @PostMapping
