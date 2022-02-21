@@ -2,7 +2,6 @@ package br.com.opussoftware.plead.validators;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.lang.annotation.Annotation;
 
 public class ProspectTypeValidator implements ConstraintValidator<ProspectType, String> {
 
@@ -13,6 +12,9 @@ public class ProspectTypeValidator implements ConstraintValidator<ProspectType, 
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        return s.equals("PF") || s.equals("PJ");
+        if (s != null) {
+            return s.equals("PF") || s.equals("PJ");
+        }
+        return false;
     }
 }
