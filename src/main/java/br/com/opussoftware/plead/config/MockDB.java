@@ -54,23 +54,19 @@ public class MockDB implements CommandLineRunner {
                 "Execução fiscal da prefeitura de são paulo",
                 "https://jusbrasil.com.br/039482048");
 
-        p1.getProcessos().addAll(List.of(proc1, proc2));
-        p2.getProcessos().add(proc2);
-        p3.getProcessos().add(proc1);
-        p6.getProcessos().add(proc1);
-
-        proc1.getProspects().addAll(List.of(p1,p3,p6));
-        proc2.getProspects().add(p2);
+        p1.associateProcesso(proc1);
+        p1.associateProcesso(proc2);
+        p2.associateProcesso(proc2);
+        p3.associateProcesso(proc1);
+        p6.associateProcesso(proc1);
 
         MidiaNegativa midia1 = new MidiaNegativa(null, "Polícia Federal apreende bens de 10 pessoas suspeitas " +
                 "de colaboração na operação Lava Jato", "https://globo.com.br/2384509278", new Date(),
                 TipoSuspeita.CORRUPCAO);
 
-        p1.getMidiasNegativas().add(midia1);
-        p3.getMidiasNegativas().add(midia1);
-        p6.getMidiasNegativas().add(midia1);
-
-        midia1.getProspects().addAll(List.of(p1,p3,p6));
+        p1.associateMidiaNegativa(midia1);
+        p3.associateMidiaNegativa(midia1);
+        p6.associateMidiaNegativa(midia1);
 
         p1.setStatus(StatusProspect.REPROVADO);
         p2.setStatus(StatusProspect.APROVADO);
