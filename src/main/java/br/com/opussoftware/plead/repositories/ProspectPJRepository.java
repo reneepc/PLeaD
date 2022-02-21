@@ -1,15 +1,16 @@
 package br.com.opussoftware.plead.repositories;
 
 import br.com.opussoftware.plead.domain.Prospect;
+import br.com.opussoftware.plead.domain.ProspectPJ;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
-
 @Repository
-public interface ProspectRepository extends JpaRepository<Prospect, Long> {
-    Page<Prospect> findAllByRendaAnualIsGreaterThan(BigDecimal rendaAnualMinima, Pageable pageable);
+public interface ProspectPJRepository extends JpaRepository<ProspectPJ, Long> {
+
+    @Query("select p from ProspectPJ p where LOWER(p.nomeRazaoSocial) like lower(concat('%', :razaoSocial, '%'))")
+    Page<Prospect> findAllByRazaoSocial(String razaoSocial, Pageable pageable);
 }

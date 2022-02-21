@@ -2,6 +2,8 @@ package br.com.opussoftware.plead.controller;
 
 import br.com.opussoftware.plead.domain.Prospect;
 import br.com.opussoftware.plead.dtos.NewProspectDTO;
+import br.com.opussoftware.plead.repositories.ProspectPJRepository;
+import br.com.opussoftware.plead.services.ProspectPFService;
 import br.com.opussoftware.plead.services.ProspectService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,15 +25,19 @@ import java.net.URI;
 @RestController
 @RequestMapping("/prospects")
 public class ProspectController {
-    private final ProspectService service;
+    private final ProspectService prospectService;
+    private final ProspectPFService prospectPFService;
+    private final ProspectPJRepository prospectPJService;
 
-    public ProspectController(ProspectService service) {
-        this.service = service;
+    public ProspectController(ProspectService service, ProspectPFService prospectPFService, ProspectPJRepository prospectPJService) {
+        this.prospectService = service;
+        this.prospectPFService = prospectPFService;
+        this.prospectPJService = prospectPJService;
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Prospect> findById(@PathVariable Long id) {
-        Prospect prospect = service.findById(id);
+        Prospect prospect = prospectService.findById(id);
         return ResponseEntity.ok().body(prospect);
     }
 
@@ -42,7 +48,7 @@ public class ProspectController {
                                                        page = 0,
                                                        size = 12)
                                                Pageable page) {
-        Page<Prospect> prospects = service.findAllByNome(nome, page);
+        Page<Prospect> prospects = prospectPFService.findAllByNome(nome, page);
         return ResponseEntity.ok().body(prospects);
     }
 
@@ -53,7 +59,7 @@ public class ProspectController {
                                                              page = 0,
                                                              size = 12)
                                                              Pageable page) {
-        Page<Prospect> prospects = service.findAllByRazaoSocial(razaoSocial, page);
+        Page<Prospect> prospects = prospectPJService.findAllByRazaoSocial(razaoSocial, page);
         return ResponseEntity.ok().body(prospects);
     }
 
@@ -66,7 +72,7 @@ public class ProspectController {
                             size = 12)
                 Pageable page) {
 
-        return ResponseEntity.ok().body(service.findAll(page));
+        return ResponseEntity.ok().body(prospectService.findAll(page));
     }
 
     @GetMapping(params = "min")
@@ -77,12 +83,12 @@ public class ProspectController {
             page = 0,
             size = 12)
             Pageable page) {
-        return ResponseEntity.ok().body(service.findAllByRendaMinima(rendaAnualMinima, page));
+        return ResponseEntity.ok().body(prospectService.findAllByRendaMinima(rendaAnualMinima, page));
     }
 
     @PostMapping
     public ResponseEntity<?> newProspect(@Valid @RequestBody NewProspectDTO newProspectDTO) {
-        Prospect prospect = service.save(newProspectDTO);
+        Prospect prospect = prospectService.save(newProspectDTO);
         var location = URI.create("/prospects/" + prospect.getId());
         return ResponseEntity.created(location).build();
     }
