@@ -2,7 +2,6 @@ package br.com.opussoftware.plead.controller;
 
 import br.com.opussoftware.plead.domain.Prospect;
 import br.com.opussoftware.plead.dtos.NewProspectDTO;
-import br.com.opussoftware.plead.repositories.ProspectPJRepository;
 import br.com.opussoftware.plead.services.ProspectPFService;
 import br.com.opussoftware.plead.services.ProspectPJService;
 import br.com.opussoftware.plead.services.ProspectService;
