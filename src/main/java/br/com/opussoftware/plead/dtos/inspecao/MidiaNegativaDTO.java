@@ -24,15 +24,11 @@ public class MidiaNegativaDTO {
     @URL
     private String Url;
 
-    @NotEmpty(message = "É necessário relacionar a notícia ao id de um prospect")
-    private Long id_prospect;
-
-    public MidiaNegativaDTO(TipoSuspeita suspeita, String titulo, Date dataPublicacao, String url, Long id_prospect) {
+    public MidiaNegativaDTO(TipoSuspeita suspeita, String titulo, Date dataPublicacao, String url) {
         this.suspeita = suspeita;
         this.titulo = titulo;
         this.dataPublicacao = dataPublicacao;
         Url = url;
-        this.id_prospect = id_prospect;
     }
 
     public TipoSuspeita getSuspeita() {
@@ -65,13 +61,5 @@ public class MidiaNegativaDTO {
 
     public void setUrl(String url) {
         Url = url;
-    }
-
-    public Long getId_prospect() {
-        return id_prospect;
-    }
-
-    public void setId_prospect(Long id_prospect) {
-        this.id_prospect = id_prospect;
     }
 }

@@ -1,4 +1,4 @@
-package br.com.opussoftware.plead.dtos;
+package br.com.opussoftware.plead.dtos.inspecao;
 
 import br.com.opussoftware.plead.domain.enums.TipoProcesso;
 import org.hibernate.validator.constraints.URL;
@@ -27,16 +27,12 @@ public class ProcessoDTO {
     @URL
     private String url;
 
-    @NotEmpty(message = "É necessário relacionar um processo ao id de um prospect")
-    private Long id_prospect;
-
-    public ProcessoDTO(TipoProcesso tipo, String descricao, Date dataDeAbertura, String numeroCNJ, String url, Long id_prospect) {
+    public ProcessoDTO(TipoProcesso tipo, String descricao, Date dataDeAbertura, String numeroCNJ, String url) {
         this.tipo = tipo;
         this.descricao = descricao;
         this.dataDeAbertura = dataDeAbertura;
         this.numeroCNJ = numeroCNJ;
         this.url = url;
-        this.id_prospect = id_prospect;
     }
 
     public TipoProcesso getTipo() {
@@ -77,13 +73,5 @@ public class ProcessoDTO {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public Long getId_prospect() {
-        return id_prospect;
-    }
-
-    public void setId_prospect(Long id_prospect) {
-        this.id_prospect = id_prospect;
     }
 }
