@@ -13,6 +13,8 @@ public class NewInspecaoDTO {
     @NotNull(message = "O campo midiasNegativas não pode ser nulo")
     private Set<MidiaNegativaDTO> midiasNegativas;
 
+    public NewInspecaoDTO() {}
+
     public NewInspecaoDTO(Long id_prospect, Set<ProcessoDTO> processos, Set<MidiaNegativaDTO> midiasNegativas) {
         this.id_prospect = id_prospect;
         this.processos = processos;

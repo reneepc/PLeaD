@@ -24,6 +24,8 @@ public class MidiaNegativaDTO {
     @URL
     private String Url;
 
+    public MidiaNegativaDTO() {}
+
     public MidiaNegativaDTO(TipoSuspeita suspeita, String titulo, Date dataPublicacao, String url) {
         this.suspeita = suspeita;
         this.titulo = titulo;

@@ -27,6 +27,8 @@ public class ProcessoDTO {
     @URL
     private String url;
 
+    public ProcessoDTO() {}
+
     public ProcessoDTO(TipoProcesso tipo, String descricao, Date dataDeAbertura, String numeroCNJ, String url) {
         this.tipo = tipo;
         this.descricao = descricao;
