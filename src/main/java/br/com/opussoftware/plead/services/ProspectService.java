@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class ProspectService {
@@ -38,5 +39,11 @@ public class ProspectService {
         Prospect newProspect = newProspectDTOMapper.toProspect(newProspectDTO);
         newProspect.setStatus(StatusProspect.AGUARDANDO_PROCESSAMENTO);
         return repo.save(newProspect);
+    }
+
+    public List<Prospect> saveAll(List<NewProspectDTO> newProspectDTOList) {
+        List<Prospect> prospects = newProspectDTOMapper.toProspectList(newProspectDTOList);
+        prospects.forEach(prospect -> prospect.setStatus(StatusProspect.AGUARDANDO_PROCESSAMENTO));
+        return repo.saveAll(prospects);
     }
 }

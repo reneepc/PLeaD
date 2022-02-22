@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/prospects")
@@ -104,5 +105,11 @@ public class ProspectController {
         Prospect prospect = prospectService.save(newProspectDTO);
         var location = URI.create("/prospects/" + prospect.getId());
         return ResponseEntity.created(location).build();
+    }
+
+    @PostMapping(params = "batch")
+    public ResponseEntity<List<Prospect>> newProspectBatch(@Valid @RequestBody List<NewProspectDTO> newProspectDTOList) {
+        List<Prospect> prospects = prospectService.saveAll(newProspectDTOList);
+        return ResponseEntity.ok().body(prospects);
     }
 }
