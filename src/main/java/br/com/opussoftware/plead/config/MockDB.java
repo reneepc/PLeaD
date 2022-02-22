@@ -12,9 +12,7 @@ import br.com.opussoftware.plead.repositories.MidiaNegativaRepository;
 import br.com.opussoftware.plead.repositories.ProcessoRepository;
 import br.com.opussoftware.plead.repositories.ProspectRepository;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Date;

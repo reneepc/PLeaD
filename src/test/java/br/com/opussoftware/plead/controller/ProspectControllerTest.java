@@ -3,6 +3,8 @@ package br.com.opussoftware.plead.controller;
 import br.com.opussoftware.plead.domain.Prospect;
 import br.com.opussoftware.plead.domain.ProspectPJ;
 import br.com.opussoftware.plead.dtos.NewProspectDTO;
+import br.com.opussoftware.plead.services.ProspectPFService;
+import br.com.opussoftware.plead.services.ProspectPJService;
 import br.com.opussoftware.plead.services.ProspectService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -31,6 +33,12 @@ public class ProspectControllerTest {
 
     @MockBean
     private ProspectService prospectService;
+
+    @MockBean
+    private ProspectPFService prospectPFService;
+
+    @MockBean
+    private ProspectPJService prospectPJService;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
