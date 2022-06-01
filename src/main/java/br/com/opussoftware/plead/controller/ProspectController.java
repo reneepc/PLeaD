@@ -101,7 +101,7 @@ public class ProspectController {
     }
 
     @GetMapping(params = "min")
-    @ApiOperation(value = "Busca prospects com renda abaixo de um certo valor")
+    @ApiOperation(value = "Busca prospects com renda acima de um certo valor")
     public ResponseEntity<Page<Prospect>> findAllByRendaAnualMinima(
             @RequestParam(name = "min", defaultValue = "0") BigDecimal rendaAnualMinima,
             @PageableDefault(sort = "id",
