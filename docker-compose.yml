@@ -1,0 +1,9 @@
+version: '3'
+services:
+  backend:
+    container_name: plead_backend
+    build:
+      context: backend
+    image: plead_backend:latest
+    ports:
+      - 8080:8080
