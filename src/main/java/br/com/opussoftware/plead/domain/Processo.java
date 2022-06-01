@@ -2,6 +2,9 @@ package br.com.opussoftware.plead.domain;
 
 import br.com.opussoftware.plead.domain.enums.TipoProcesso;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.Entity;
@@ -19,6 +22,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
 public class Processo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,8 +50,6 @@ public class Processo {
     @ManyToMany(mappedBy = "processos")
     private Set<Prospect> prospects = new HashSet<>();
 
-    public Processo() {}
-
     public Processo(Long id, Date dataDeAbertura, TipoProcesso tipo, String numeroCNJ, String descricao, String url) {
         this.id = id;
         this.dataDeAbertura = dataDeAbertura;
@@ -53,60 +57,5 @@ public class Processo {
         this.numeroCNJ = numeroCNJ;
         this.descricao = descricao;
         this.url = url;
-    }
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getDataDeAbertura() {
-        return dataDeAbertura;
-    }
-
-    public void setDataDeAbertura(Date dataDeAbertura) {
-        this.dataDeAbertura = dataDeAbertura;
-    }
-
-    public TipoProcesso getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(TipoProcesso tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getNumeroCNJ() {
-        return numeroCNJ;
-    }
-
-    public void setNumeroCNJ(String numeroCNJ) {
-        this.numeroCNJ = numeroCNJ;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Set<Prospect> getProspects() {
-        return prospects;
-    }
-
-    public void setProspects(Set<Prospect> prospects) {
-        this.prospects = prospects;
     }
 }

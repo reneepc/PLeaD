@@ -2,6 +2,9 @@ package br.com.opussoftware.plead.domain;
 
 import br.com.opussoftware.plead.domain.enums.TipoSuspeita;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.Entity;
@@ -21,6 +24,9 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class MidiaNegativa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,53 +51,11 @@ public class MidiaNegativa {
     @ManyToMany(mappedBy = "midiasNegativas")
     private Set<Prospect> prospects = new HashSet<>();
 
-    public MidiaNegativa() {}
-
     public MidiaNegativa(Long id, String titulo, String url, Date dataPublicacao, TipoSuspeita suspeita) {
         this.id = id;
         this.titulo = titulo;
         Url = url;
         this.dataPublicacao = dataPublicacao;
-        this.suspeita = suspeita;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getUrl() {
-        return Url;
-    }
-
-    public void setUrl(String url) {
-        Url = url;
-    }
-
-    public Date getDataPublicacao() {
-        return dataPublicacao;
-    }
-
-    public void setDataPublicacao(Date dataPublicacao) {
-        this.dataPublicacao = dataPublicacao;
-    }
-
-    public TipoSuspeita getSuspeita() {
-        return suspeita;
-    }
-
-    public void setSuspeita(TipoSuspeita suspeita) {
         this.suspeita = suspeita;
     }
 
@@ -108,11 +72,4 @@ public class MidiaNegativa {
         return Objects.hash(id);
     }
 
-    public Set<Prospect> getProspects() {
-        return prospects;
-    }
-
-    public void setProspects(Set<Prospect> prospects) {
-        this.prospects = prospects;
-    }
 }

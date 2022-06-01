@@ -5,7 +5,6 @@ import br.com.opussoftware.plead.domain.Processo;
 import br.com.opussoftware.plead.domain.Prospect;
 import br.com.opussoftware.plead.domain.enums.StatusProspect;
 import br.com.opussoftware.plead.dtos.inspecao.NewInspecaoDTO;
-import br.com.opussoftware.plead.dtos.inspecao.ProcessoDTO;
 import br.com.opussoftware.plead.dtos.mappers.MidiaNegativaDTOMapper;
 import br.com.opussoftware.plead.dtos.mappers.ProcessoDTOMapper;
 import br.com.opussoftware.plead.exceptions.ObjectNotFoundException;
@@ -17,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class InspecaoService {

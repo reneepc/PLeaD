@@ -4,6 +4,9 @@ import br.com.opussoftware.plead.domain.enums.StatusProspect;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.sun.istack.Nullable;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -38,6 +41,9 @@ import java.util.Set;
         @JsonSubTypes.Type(value = ProspectPF.class, name = "PF"),
         @JsonSubTypes.Type(value = ProspectPJ.class, name = "PJ")
 })
+@Getter
+@Setter
+@NoArgsConstructor
 public abstract class Prospect {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,8 +79,6 @@ public abstract class Prospect {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "prospect")
     Set<JustificativaDeRecusa> justificativas = new java.util.LinkedHashSet<>();
 
-    public Prospect() {}
-
     public Prospect(Long id, String nomeRazaoSocial, BigDecimal rendaAnual, Boolean expostaPoliticamente) {
         this.id = id;
         this.nomeRazaoSocial = nomeRazaoSocial;
@@ -83,45 +87,6 @@ public abstract class Prospect {
         this.status = StatusProspect.AGUARDANDO_PROCESSAMENTO;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNomeRazaoSocial() {
-        return nomeRazaoSocial;
-    }
-
-    public void setNomeRazaoSocial(String nomeRazaoSocial) {
-        this.nomeRazaoSocial = nomeRazaoSocial;
-    }
-
-    public BigDecimal getRendaAnual() {
-        return rendaAnual;
-    }
-
-    public void setRendaAnual(BigDecimal rendaAnual) {
-        this.rendaAnual = rendaAnual;
-    }
-
-    public Boolean getExpostaPoliticamente() {
-        return expostaPoliticamente;
-    }
-
-    public void setExpostaPoliticamente(Boolean expostaPoliticamente) {
-        this.expostaPoliticamente = expostaPoliticamente;
-    }
-
-    public Set<MidiaNegativa> getMidiasNegativas() {
-        return midiasNegativas;
-    }
-
-    public void setMidiasNegativas(Set<MidiaNegativa> midiasNegativas) {
-        this.midiasNegativas = midiasNegativas;
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -133,31 +98,6 @@ public abstract class Prospect {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    public StatusProspect getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusProspect status) {
-        this.status = status;
-    }
-
-
-    public void setProcessos(Set<Processo> processos) {
-        this.processos = processos;
-    }
-
-    public Set<Processo> getProcessos() {
-        return processos;
-    }
-
-    public void setJustificativas(Set<JustificativaDeRecusa> justificativas) {
-        this.justificativas = justificativas;
-    }
-
-    public Set<JustificativaDeRecusa> getJustificativas() {
-        return justificativas;
     }
 
     public Processo associateProcesso(Processo processo) {

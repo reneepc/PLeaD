@@ -1,6 +1,8 @@
 package br.com.opussoftware.plead.domain;
 
 import br.com.opussoftware.plead.domain.enums.TipoJustificativa;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
+@Setter
+@Getter
 @Table(name = "justificativa_de_recusa")
 public class JustificativaDeRecusa {
     @Id
@@ -28,20 +32,4 @@ public class JustificativaDeRecusa {
     @ManyToOne
     @JoinColumn(name = "prospect_id")
     private Prospect prospect;
-
-    public Prospect getProspect() {
-        return prospect;
-    }
-
-    public void setProspect(Prospect prospect) {
-        this.prospect = prospect;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }
