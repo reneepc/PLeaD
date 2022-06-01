@@ -4,7 +4,7 @@ WORKDIR /usr/app
 
 COPY pom.xml .
 COPY src src
-RUN mvn clean package
+RUN --mount=type=cache,target=/root/.m2 mvn -f /usr/app/pom.xml clean package
 
 # RUN
 FROM openjdk:17-jdk-alpine
