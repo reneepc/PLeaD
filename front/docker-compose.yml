@@ -1,0 +1,13 @@
+# Docker compose for development purposes
+version: "3"
+services:
+  dev:
+    container_name: front_dev
+    build:
+      context: .
+      dockerfile: Dockerfile-build
+    ports:
+      - "4200:4200"
+    volumes:
+      - .:/usr/src/app
+    command: ng serve --host=0.0.0.0 --port 4200 --watch --open --disable-host-check --poll=2000
