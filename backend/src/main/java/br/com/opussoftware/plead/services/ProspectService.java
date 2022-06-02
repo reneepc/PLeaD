@@ -50,5 +50,4 @@ public class ProspectService {
         prospects.forEach(prospect -> prospect.setStatus(StatusProspect.AGUARDANDO_PROCESSAMENTO));
         return repo.saveAll(prospects);
     }
-
 }
