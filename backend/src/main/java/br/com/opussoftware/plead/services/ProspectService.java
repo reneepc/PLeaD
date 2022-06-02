@@ -27,6 +27,10 @@ public class ProspectService {
         return repo.findById(id).orElseThrow(() -> new ObjectNotFoundException(id, Prospect.class));
     }
 
+    public void deleteById(Long id) {
+        repo.deleteById(id);
+    }
+
     public Page<Prospect> findAllByRendaMinima(BigDecimal rendaAnualMinima, Pageable page) {
         return repo.findAllByRendaAnualIsGreaterThan(rendaAnualMinima, page);
     }
@@ -46,4 +50,5 @@ public class ProspectService {
         prospects.forEach(prospect -> prospect.setStatus(StatusProspect.AGUARDANDO_PROCESSAMENTO));
         return repo.saveAll(prospects);
     }
+
 }

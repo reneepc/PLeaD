@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,6 +46,13 @@ public class ProspectController {
     public ResponseEntity<Prospect> findById(@PathVariable Long id) {
         Prospect prospect = prospectService.findById(id);
         return ResponseEntity.ok().body(prospect);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    @ApiOperation(value = "Deleta um prospect por seu id")
+    public ResponseEntity<Long> deleteProspectById(@PathVariable Long id) {
+        prospectService.deleteById(id);
+        return ResponseEntity.ok(id);
     }
 
     @GetMapping(value = "cpf", params = "cpf")
